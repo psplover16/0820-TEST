@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <style>
+    thead {
+      background: #eee;
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+</head>
+
+<body>
+  <table width="100%">
+    <thead>
+      <tr>
+        <th>編號</th>
+        <th>動物名</th>
+        <th>重量</th>
+        <th>簡介</th>
+        <th>更新日期</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- 塞入來自ajax的訊息 -->
+    </tbody>
+  </table>
+
+  <script>
+    //select動作：請求後端的動物資料
+    $.post("api.php?do=select", function (re) {
+      $('tbody').html(re); //塞入來自ajax的訊息
+      $('.mdy').click(chginput);
+    });
+
+
+
+    function chginput(){
+      let txtname=$(this).parents('tr').find('.name').text();
+      $(this).parents('tr').find('.name').html(`
+        <input type="text" value="${txtname}">
+      `);
+      // console.log(where);
+    }
+
+
+  </script>
+
+
+</body>
+
+</html>
